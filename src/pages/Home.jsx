@@ -7,7 +7,7 @@ import Input from '../Components/Input';
 
 const Home = () => {
     return (
-        <div className='flex'>
+        <div className='flex overflow-hidden'>
             <Sidebar />
             <ChatList />
             <div className='flex-1 bg-[#d3e7ff] flex flex-col xs:hidden md:block'>
