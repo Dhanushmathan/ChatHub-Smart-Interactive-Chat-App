@@ -2,7 +2,7 @@ import React from 'react'
 
 const ChatHeader = () => {
     return (
-        <div className='flex items-center justify-between bg-gradient-to-l from-[#A5A7F4] via-[#3E58A9] to-[#3E58A9] px-4 py-3 text-white'>
+        <div className='flex items-center justify-between bg-gradient-to-l from-[#6c63ff] via-[#3E58A9] to-[#3E58A9] px-4 py-3 text-white'>
             <div className='flex items-center space-x-3'>
                 <button className='cursor-pointer'><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="currentColor" d="m5.83 9l5.58-5.58L10 2l-8 8l8 8l1.41-1.41L5.83 11H18V9z"></path></svg></button>
                 <img src="https://w0.peakpx.com/wallpaper/152/193/HD-wallpaper-jiraiya-sensei-aesthetic-anime-legend-manga-naruto-sky-uzumaki.jpg" alt="users" className='w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400' />
