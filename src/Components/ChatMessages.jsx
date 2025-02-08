@@ -9,10 +9,10 @@ const ChatMessages = () => {
         <div className='p-2 max-w-xs bg-white shadow-lg rounded-e-full rounded-bl-full mt-7'>
           <p>Hey, Tsunade dateing...</p>
         </div>
-        <span className="text-xs text-gray-400 font-bold">12:44</span>
+        <span className="text-xs text-gray-400 font-bold mt-7">12:44</span>
       </div>
       <div className='flex justify-end items-center space-x-2 text-white'>
-        <span className="text-xs text-[#6c63ff] font-bold">12:44</span>
+        <span className="text-xs text-[#6c63ff] font-bold mt-7">12:44</span>
         <div className='p-2 mt-7 max-w-xs bg-gradient-to-l from-[#6c63ff] via-[#6c63ff] to-[#3E58A9] shadow-lg rounded-s-full rounded-br-full'>
           <p>Hey, Tsunade dateing...</p>
         </div>
@@ -24,10 +24,10 @@ const ChatMessages = () => {
         <div className='p-2 max-w-xs bg-white shadow-lg rounded-e-full rounded-bl-full mt-7'>
           <p>Hey, Tsunade dateing...</p>
         </div>
-        <span className="text-xs text-gray-400 font-bold">12:44</span>
+        <span className="text-xs text-gray-400 font-bold mt-7">12:44</span>
       </div>
       <div className='flex justify-end items-center space-x-2 text-white'>
-        <span className="text-xs text-[#6c63ff] font-bold">12:44</span>
+        <span className="text-xs text-[#6c63ff] font-bold mt-7">12:44</span>
         <div className='p-2 mt-7 max-w-xs bg-gradient-to-l from-[#6c63ff] via-[#6c63ff] to-[#3E58A9] shadow-lg rounded-s-full rounded-br-full'>
           <p>Hey, Tsunade dateing...</p>
         </div>
@@ -39,10 +39,10 @@ const ChatMessages = () => {
         <div className='p-2 max-w-xs bg-white shadow-lg rounded-e-full rounded-bl-full mt-7'>
           <p>Hey, Tsunade dateing...</p>
         </div>
-        <span className="text-xs text-gray-400 font-bold">12:44</span>
+        <span className="text-xs text-gray-400 font-bold mt-7">12:44</span>
       </div>
       <div className='flex justify-end items-center space-x-2 text-white'>
-        <span className="text-xs text-[#6c63ff] font-bold">12:44</span>
+        <span className="text-xs text-[#6c63ff] font-bold mt-7">12:44</span>
         <div className='p-2 mt-7 max-w-xs bg-gradient-to-l from-[#6c63ff] via-[#6c63ff] to-[#3E58A9] shadow-lg rounded-s-full rounded-br-full'>
           <p>Hey, Tsunade dateing...</p>
         </div>
@@ -54,10 +54,10 @@ const ChatMessages = () => {
         <div className='p-2 max-w-xs bg-white shadow-lg rounded-e-full rounded-bl-full mt-7'>
           <p>Hey, Tsunade dateing...</p>
         </div>
-        <span className="text-xs text-gray-400 font-bold">12:44</span>
+        <span className="text-xs text-gray-400 font-bold mt-7">12:44</span>
       </div>
       <div className='flex justify-end items-center space-x-2 text-white'>
-        <span className="text-xs text-[#6c63ff] font-bold">12:44</span>
+        <span className="text-xs text-[#6c63ff] font-bold mt-7">12:44</span>
         <div className='p-2 mt-7 max-w-xs bg-gradient-to-l from-[#6c63ff] via-[#6c63ff] to-[#3E58A9] shadow-lg rounded-s-full rounded-br-full'>
           <p>Hey, Tsunade dateing...</p>
         </div>
@@ -69,10 +69,10 @@ const ChatMessages = () => {
         <div className='p-2 max-w-xs bg-white shadow-lg rounded-e-full rounded-bl-full mt-7'>
           <p>Hey, Tsunade dateing...</p>
         </div>
-        <span className="text-xs text-gray-400 font-bold">12:44</span>
+        <span className="text-xs text-gray-400 font-bold mt-7">12:44</span>
       </div>
       <div className='flex justify-end items-center space-x-2 text-white'>
-        <span className="text-xs text-[#6c63ff] font-bold">12:44</span>
+        <span className="text-xs text-[#6c63ff] font-bold mt-7">12:44</span>
         <div className='p-2 mt-7 max-w-xs bg-gradient-to-l from-[#6c63ff] via-[#6c63ff] to-[#3E58A9] shadow-lg rounded-s-full rounded-br-full'>
           <p>Hey, Tsunade dateing...</p>
         </div>
@@ -84,10 +84,10 @@ const ChatMessages = () => {
         <div className='p-2 max-w-xs bg-white shadow-lg rounded-e-full rounded-bl-full mt-7'>
           <p>Hey, Tsunade dateing...</p>
         </div>
-        <span className="text-xs text-gray-400 font-bold">12:44</span>
+        <span className="text-xs text-gray-400 font-bold mt-7">12:44</span>
       </div>
       <div className='flex justify-end items-center space-x-2 text-white'>
-        <span className="text-xs text-[#6c63ff] font-bold">12:44</span>
+        <span className="text-xs text-[#6c63ff] font-bold mt-7">12:44</span>
         <div className='p-2 mt-7 max-w-xs bg-gradient-to-l from-[#6c63ff] via-[#6c63ff] to-[#3E58A9] shadow-lg rounded-s-full rounded-br-full'>
           <p>Hey, Tsunade dateing...</p>
         </div>
@@ -99,10 +99,10 @@ const ChatMessages = () => {
         <div className='p-2 max-w-xs bg-white shadow-lg rounded-e-full rounded-bl-full mt-7'>
           <p>Hey, Tsunade dateing...</p>
         </div>
-        <span className="text-xs text-gray-400 font-bold">12:44</span>
+        <span className="text-xs text-gray-400 font-bold mt-7">12:44</span>
       </div>
       <div className='flex justify-end items-center space-x-2 text-white'>
-        <span className="text-xs text-[#6c63ff] font-bold">12:44</span>
+        <span className="text-xs text-[#6c63ff] font-bold mt-7">12:44</span>
         <div className='p-2 mt-7 max-w-xs bg-gradient-to-l from-[#6c63ff] via-[#6c63ff] to-[#3E58A9] shadow-lg rounded-s-full rounded-br-full'>
           <p>Hey, Tsunade dateing...</p>
         </div>
@@ -114,10 +114,10 @@ const ChatMessages = () => {
         <div className='p-2 max-w-xs bg-white shadow-lg rounded-e-full rounded-bl-full mt-7'>
           <p>Hey, Tsunade dateing...</p>
         </div>
-        <span className="text-xs text-gray-400 font-bold">12:44</span>
+        <span className="text-xs text-gray-400 font-bold mt-7">12:44</span>
       </div>
       <div className='flex justify-end items-center space-x-2 text-white'>
-        <span className="text-xs text-[#6c63ff] font-bold">12:44</span>
+        <span className="text-xs text-[#6c63ff] font-bold mt-7">12:44</span>
         <div className='p-2 mt-7 max-w-xs bg-gradient-to-l from-[#6c63ff] via-[#6c63ff] to-[#3E58A9] shadow-lg rounded-s-full rounded-br-full'>
           <p>Hey, Tsunade dateing...</p>
         </div>

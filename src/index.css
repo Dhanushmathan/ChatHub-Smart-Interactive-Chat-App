@@ -1,11 +1,19 @@
 @import "tailwindcss";
 
+body {
+  font-family: "Inter", serif;
+}
+
 @theme {
   --font-inter: "Inter", serif;
 }
 
 @theme {
   --breakpoint-xs: 23.438rem;
+}
+
+@theme {
+  --color-light-blue: #6c66ff;
 }
 
 @layer utilities {
