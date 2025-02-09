@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AuthContext } from './context/AuthContext';
+import ProfileCard from './pages/Profile';
 
 const App = () => {
 
@@ -28,6 +29,7 @@ const App = () => {
         } />
         <Route path='login' element={<Login />} />
         <Route path='register' element={<Register />} />
+        <Route path='profile' element={<ProfileCard />} />
         <Route path='*' element={<Login />} />
       </Routes>
     </BrowserRouter>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import chatBg from '../assets/img/chat bg.png';
 import chatLogo from '../../public/ChaHub logo.png';
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from '../firebase/index';
 import { doc, setDoc } from "firebase/firestore";
 import { Link, useNavigate } from 'react-router-dom';
@@ -20,16 +20,21 @@ const Register = () => {
 
         try {
             const response = await createUserWithEmailAndPassword(auth, email, password);
-
+            const userId = response.user.uid;
             console.log("User Created:", response.user);
 
-            await setDoc(doc(db, "users", response.user.uid), {
-                uid: response.user.uid,
+            await updateProfile(response.user, {
+                displayName: displayName,
+            })
+
+            await setDoc(doc(db, "users", userId), {
+                uid: userId,
                 displayName: displayName || "Anonymous",
                 email: email,
             });
+            localStorage.setItem("userId", userId);
 
-            await setDoc(doc(db, "userChats", response.user.uid), {});
+            await setDoc(doc(db, "userChats", userId), {});
             navigate("/");
 
             console.log("User saved in Firestore!");
