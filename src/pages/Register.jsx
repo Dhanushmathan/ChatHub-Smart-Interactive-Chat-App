@@ -48,8 +48,8 @@ const Register = () => {
         <div className="bg-[#ede7f6] min-h-screen flex flex-col items-center px-6">
             <nav className="w-full max-w-6xl flex justify-between items-center py-6">
                 <div className='text-[#6c66ff] flex items-center'>
-                    <img src={chatLogo} alt="logo" className='w-14 mr-3' />
-                    <h1 className="text-3xl font-bold">ChatHub</h1>
+                    <img src={chatLogo} alt="logo" className='xs:w-7 w-14 mr-3' />
+                    <h1 className="xs:text-xl text-3xl font-bold">ChatHub</h1>
                 </div>
                 <div className="hidden md:flex space-x-6">
                     <a href="#" className="text-gray-700">Home</a>
@@ -58,13 +58,13 @@ const Register = () => {
                     <a href="#" className="text-gray-700">Contact</a>
                 </div>
                 <div className="space-x-4">
-                    <button className="px-4 py-2 border border-light-blue hover:bg-light-blue hover:text-white text-[#6c44ff] rounded-md cursor-pointer font-semibold">Login</button>
-                    <button className="px-4 py-2 bg-light-blue hover:bg-[#6c44ff] cursor-pointer text-white rounded-md font-semibold">Sign in</button>
+                    <button className="px-4 py-2 border border-light-blue hover:bg-light-blue hover:text-white text-[#6c44ff] rounded-md cursor-pointer font-semibold xs:px-2 xs:py-1 xs:text-sm">Login</button>
+                    <button className="px-4 py-2 bg-light-blue hover:bg-[#6c44ff] cursor-pointer text-white rounded-md font-semibold xs:px-2 xs:py-1 xs:text-sm">Sign in</button>
                 </div>
             </nav>
 
-            <div className="flex flex-col md:flex-row items-center mt-16 max-w-6xl">
-                <div className="md:w-1/2 flex items-center mr-20">
+            <div className="flex flex-col md:flex-row items-center xs:mt-8 mt-16 max-w-6xl">
+                <div className="md:w-1/2 flex items-center xs:mr-0 mr-20">
                     <form action="" className='w-full max-w-md space-y-4' onSubmit={handleSubmit}>
                         <div>
                             <h2 className="text-2xl font-bold text-gray-800 text-center">Welcome Back!</h2>
@@ -72,17 +72,14 @@ const Register = () => {
                         </div>
 
                         <div className="mt-4">
-                            {/* <label htmlFor='name' className="block text-gray-700">Fullname</label> */}
                             <input id='name' type="text" className="w-full p-2 border-b border-light-blue mt-1 outline-none" placeholder="Fullname" />
                         </div>
 
                         <div className="mt-4">
-                            {/* <label htmlFor='email' className="block text-gray-700">Email</label> */}
                             <input id='email' type="email" className="w-full p-2 border-b border-light-blue mt-1 outline-none" placeholder="Email" />
                         </div>
 
                         <div className="mt-4">
-                            {/* <label htmlFor='password' className="block text-gray-700">Password</label> */}
                             <input id='password' type="password" className="w-full p-2 border-b border-light-blue mt-1 outline-none" placeholder="Password" />
                         </div>
 
