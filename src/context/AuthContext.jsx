@@ -6,6 +6,7 @@ const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
@@ -17,14 +18,15 @@ const AuthContextProvider = ({ children }) => {
         setCurrentUser(null);
         localStorage.removeItem("userId");
       }
+      setLoading(false);
     });
 
     return () => { unsub(); }
   }, [])
 
   return (
-    <AuthContext.Provider value={{ currentUser }}>
-      {children}
+    <AuthContext.Provider value={{ currentUser, loading }}>
+      {!loading && children}
     </AuthContext.Provider>
   );
 

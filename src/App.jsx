@@ -8,14 +8,15 @@ import ProfileCard from './pages/Profile';
 
 const App = () => {
 
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, loading } = useContext(AuthContext);
 
   const ProtectedRoute = ({ children }) => {
+    if(loading) return <p>Loading...</p>;
     if (!currentUser) {
       return <Navigate to="/login" />
     }
 
-    return children
+    return children;
   }
 
   return (

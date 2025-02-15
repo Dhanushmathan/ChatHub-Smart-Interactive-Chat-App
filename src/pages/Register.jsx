@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import chatBg from '../assets/img/chat bg.png';
-import chatLogo from '../../public/ChaHub logo.png';
+import chatLogo from '/ChaHub logo.png?url';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from '../firebase/index';
 import { doc, setDoc } from "firebase/firestore";

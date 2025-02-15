@@ -3,11 +3,14 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { AuthContextProvider } from './context/AuthContext.jsx'
+import { ChatContextProvider } from './context/ChatContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <AuthContextProvider>
-    <StrictMode>
-      <App />
-    </StrictMode>
+    <ChatContextProvider>
+      <StrictMode>
+        <App />
+      </StrictMode>
+    </ChatContextProvider>
   </AuthContextProvider>
 )

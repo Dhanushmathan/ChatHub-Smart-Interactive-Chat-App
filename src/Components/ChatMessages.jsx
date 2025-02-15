@@ -1,129 +1,49 @@
-import React from 'react'
+import React, { useContext, useEffect, useRef } from 'react';
+import { AuthContext } from '../context/AuthContext';
+import { ChatContext } from '../context/ChatContext';
+import { formatTime } from '../utils/formateDate';
 
-const ChatMessages = () => {
+const ChatMessages = ({ message }) => {
+  const { currentUser } = useContext(AuthContext);
+  const { data } = useContext(ChatContext);
+
+  const ref = useRef();
+
+  useEffect(() => {
+    ref.current?.scrollIntoView({ behavior: "smooth" })
+  }, [message]);
+
   return (
-    <div className='flex-1 my-5 px-4 space-y-2'>
+    <div className='flex-1 my-5 px-4 space-y-2' ref={ref}>
+      <div className={`flex ${message.senderId === currentUser.uid ? 'justify-end' : 'justify-start'} items-center space-x-2 my-2`} ref={ref}>
 
-      <div className='flex items-center space-x-2'>
-        <img src="https://w0.peakpx.com/wallpaper/152/193/HD-wallpaper-jiraiya-sensei-aesthetic-anime-legend-manga-naruto-sky-uzumaki.jpg" alt="users" className='w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400' />
-        <div className='p-2 max-w-xs bg-white shadow-lg rounded-e-full rounded-bl-full mt-7'>
-          <p>Hey, Tsunade dateing...</p>
-        </div>
-        <span className="text-xs text-gray-400 font-bold mt-7">12:44</span>
-      </div>
-      <div className='flex justify-end items-center space-x-2 text-white'>
-        <span className="text-xs text-[#6c63ff] font-bold mt-7">12:44</span>
-        <div className='p-2 mt-7 max-w-xs bg-gradient-to-l from-[#6c63ff] via-[#6c63ff] to-[#3E58A9] shadow-lg rounded-s-full rounded-br-full'>
-          <p>Hey, Tsunade dateing...</p>
-        </div>
-        <img src="https://w0.peakpx.com/wallpaper/152/193/HD-wallpaper-jiraiya-sensei-aesthetic-anime-legend-manga-naruto-sky-uzumaki.jpg" alt="users" className='w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400' />
-      </div>
+        {message.senderId === currentUser.uid ? (
+          <>
+            <span className="text-xs mt-8 text-gray-400 font-bold">{formatTime(message.date)}</span>
+            <div className="p-2 mt-8 max-w-xs bg-gradient-to-l from-[#6c63ff] via-[#6c63ff] to-[#3E58A9] text-white shadow-lg rounded-s-full rounded-br-full">
+              <p>{message.text}</p>
+            </div>
+            <img
+              src={currentUser.photoURL}
+              alt="users"
+              className="w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400"
+            />
+          </>
+        ) : (
+          <>
+            <img
+              src={data.user.photoURL}
+              alt="users"
+              className="w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400"
+            />
+            <div className="p-2 mt-8 max-w-xs bg-white text-black shadow-lg rounded-e-full rounded-bl-full">
+              <p>{message.text}</p>
+            </div>
+            <span className="text-xs mt-8 text-gray-400 font-bold">{formatTime(message.date)}</span>
+          </>
+        )}
 
-      <div className='flex items-center space-x-2'>
-        <img src="https://w0.peakpx.com/wallpaper/152/193/HD-wallpaper-jiraiya-sensei-aesthetic-anime-legend-manga-naruto-sky-uzumaki.jpg" alt="users" className='w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400' />
-        <div className='p-2 max-w-xs bg-white shadow-lg rounded-e-full rounded-bl-full mt-7'>
-          <p>Hey, Tsunade dateing...</p>
-        </div>
-        <span className="text-xs text-gray-400 font-bold mt-7">12:44</span>
       </div>
-      <div className='flex justify-end items-center space-x-2 text-white'>
-        <span className="text-xs text-[#6c63ff] font-bold mt-7">12:44</span>
-        <div className='p-2 mt-7 max-w-xs bg-gradient-to-l from-[#6c63ff] via-[#6c63ff] to-[#3E58A9] shadow-lg rounded-s-full rounded-br-full'>
-          <p>Hey, Tsunade dateing...</p>
-        </div>
-        <img src="https://w0.peakpx.com/wallpaper/152/193/HD-wallpaper-jiraiya-sensei-aesthetic-anime-legend-manga-naruto-sky-uzumaki.jpg" alt="users" className='w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400' />
-      </div>
-
-      <div className='flex items-center space-x-2'>
-        <img src="https://w0.peakpx.com/wallpaper/152/193/HD-wallpaper-jiraiya-sensei-aesthetic-anime-legend-manga-naruto-sky-uzumaki.jpg" alt="users" className='w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400' />
-        <div className='p-2 max-w-xs bg-white shadow-lg rounded-e-full rounded-bl-full mt-7'>
-          <p>Hey, Tsunade dateing...</p>
-        </div>
-        <span className="text-xs text-gray-400 font-bold mt-7">12:44</span>
-      </div>
-      <div className='flex justify-end items-center space-x-2 text-white'>
-        <span className="text-xs text-[#6c63ff] font-bold mt-7">12:44</span>
-        <div className='p-2 mt-7 max-w-xs bg-gradient-to-l from-[#6c63ff] via-[#6c63ff] to-[#3E58A9] shadow-lg rounded-s-full rounded-br-full'>
-          <p>Hey, Tsunade dateing...</p>
-        </div>
-        <img src="https://w0.peakpx.com/wallpaper/152/193/HD-wallpaper-jiraiya-sensei-aesthetic-anime-legend-manga-naruto-sky-uzumaki.jpg" alt="users" className='w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400' />
-      </div>
-
-      <div className='flex items-center space-x-2'>
-        <img src="https://w0.peakpx.com/wallpaper/152/193/HD-wallpaper-jiraiya-sensei-aesthetic-anime-legend-manga-naruto-sky-uzumaki.jpg" alt="users" className='w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400' />
-        <div className='p-2 max-w-xs bg-white shadow-lg rounded-e-full rounded-bl-full mt-7'>
-          <p>Hey, Tsunade dateing...</p>
-        </div>
-        <span className="text-xs text-gray-400 font-bold mt-7">12:44</span>
-      </div>
-      <div className='flex justify-end items-center space-x-2 text-white'>
-        <span className="text-xs text-[#6c63ff] font-bold mt-7">12:44</span>
-        <div className='p-2 mt-7 max-w-xs bg-gradient-to-l from-[#6c63ff] via-[#6c63ff] to-[#3E58A9] shadow-lg rounded-s-full rounded-br-full'>
-          <p>Hey, Tsunade dateing...</p>
-        </div>
-        <img src="https://w0.peakpx.com/wallpaper/152/193/HD-wallpaper-jiraiya-sensei-aesthetic-anime-legend-manga-naruto-sky-uzumaki.jpg" alt="users" className='w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400' />
-      </div>
-
-      <div className='flex items-center space-x-2'>
-        <img src="https://w0.peakpx.com/wallpaper/152/193/HD-wallpaper-jiraiya-sensei-aesthetic-anime-legend-manga-naruto-sky-uzumaki.jpg" alt="users" className='w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400' />
-        <div className='p-2 max-w-xs bg-white shadow-lg rounded-e-full rounded-bl-full mt-7'>
-          <p>Hey, Tsunade dateing...</p>
-        </div>
-        <span className="text-xs text-gray-400 font-bold mt-7">12:44</span>
-      </div>
-      <div className='flex justify-end items-center space-x-2 text-white'>
-        <span className="text-xs text-[#6c63ff] font-bold mt-7">12:44</span>
-        <div className='p-2 mt-7 max-w-xs bg-gradient-to-l from-[#6c63ff] via-[#6c63ff] to-[#3E58A9] shadow-lg rounded-s-full rounded-br-full'>
-          <p>Hey, Tsunade dateing...</p>
-        </div>
-        <img src="https://w0.peakpx.com/wallpaper/152/193/HD-wallpaper-jiraiya-sensei-aesthetic-anime-legend-manga-naruto-sky-uzumaki.jpg" alt="users" className='w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400' />
-      </div>
-
-      <div className='flex items-center space-x-2'>
-        <img src="https://w0.peakpx.com/wallpaper/152/193/HD-wallpaper-jiraiya-sensei-aesthetic-anime-legend-manga-naruto-sky-uzumaki.jpg" alt="users" className='w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400' />
-        <div className='p-2 max-w-xs bg-white shadow-lg rounded-e-full rounded-bl-full mt-7'>
-          <p>Hey, Tsunade dateing...</p>
-        </div>
-        <span className="text-xs text-gray-400 font-bold mt-7">12:44</span>
-      </div>
-      <div className='flex justify-end items-center space-x-2 text-white'>
-        <span className="text-xs text-[#6c63ff] font-bold mt-7">12:44</span>
-        <div className='p-2 mt-7 max-w-xs bg-gradient-to-l from-[#6c63ff] via-[#6c63ff] to-[#3E58A9] shadow-lg rounded-s-full rounded-br-full'>
-          <p>Hey, Tsunade dateing...</p>
-        </div>
-        <img src="https://w0.peakpx.com/wallpaper/152/193/HD-wallpaper-jiraiya-sensei-aesthetic-anime-legend-manga-naruto-sky-uzumaki.jpg" alt="users" className='w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400' />
-      </div>
-
-      <div className='flex items-center space-x-2'>
-        <img src="https://w0.peakpx.com/wallpaper/152/193/HD-wallpaper-jiraiya-sensei-aesthetic-anime-legend-manga-naruto-sky-uzumaki.jpg" alt="users" className='w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400' />
-        <div className='p-2 max-w-xs bg-white shadow-lg rounded-e-full rounded-bl-full mt-7'>
-          <p>Hey, Tsunade dateing...</p>
-        </div>
-        <span className="text-xs text-gray-400 font-bold mt-7">12:44</span>
-      </div>
-      <div className='flex justify-end items-center space-x-2 text-white'>
-        <span className="text-xs text-[#6c63ff] font-bold mt-7">12:44</span>
-        <div className='p-2 mt-7 max-w-xs bg-gradient-to-l from-[#6c63ff] via-[#6c63ff] to-[#3E58A9] shadow-lg rounded-s-full rounded-br-full'>
-          <p>Hey, Tsunade dateing...</p>
-        </div>
-        <img src="https://w0.peakpx.com/wallpaper/152/193/HD-wallpaper-jiraiya-sensei-aesthetic-anime-legend-manga-naruto-sky-uzumaki.jpg" alt="users" className='w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400' />
-      </div>
-
-      <div className='flex items-center space-x-2'>
-        <img src="https://w0.peakpx.com/wallpaper/152/193/HD-wallpaper-jiraiya-sensei-aesthetic-anime-legend-manga-naruto-sky-uzumaki.jpg" alt="users" className='w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400' />
-        <div className='p-2 max-w-xs bg-white shadow-lg rounded-e-full rounded-bl-full mt-7'>
-          <p>Hey, Tsunade dateing...</p>
-        </div>
-        <span className="text-xs text-gray-400 font-bold mt-7">12:44</span>
-      </div>
-      <div className='flex justify-end items-center space-x-2 text-white'>
-        <span className="text-xs text-[#6c63ff] font-bold mt-7">12:44</span>
-        <div className='p-2 mt-7 max-w-xs bg-gradient-to-l from-[#6c63ff] via-[#6c63ff] to-[#3E58A9] shadow-lg rounded-s-full rounded-br-full'>
-          <p>Hey, Tsunade dateing...</p>
-        </div>
-        <img src="https://w0.peakpx.com/wallpaper/152/193/HD-wallpaper-jiraiya-sensei-aesthetic-anime-legend-manga-naruto-sky-uzumaki.jpg" alt="users" className='w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400' />
-      </div>
-
     </div>
   )
 }

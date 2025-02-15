@@ -1,6 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { collection, getDoc, query, where } from "firebase/firestore";
+import { db } from '../firebase/index';
 
 const Header = () => {
+
+  const [userName, setUserName] = useState("");
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(false);
+
+  const handleSearch = async () => {
+    const data = query(collection(db, "users", where("displayName", "==", userName)));
+    try {
+      const querySnapshot = await getDoc(data);
+      querySnapshot.forEach((doc) => {
+        setUser(doc.data())
+      });
+    } catch (error) {
+      setError(true);
+    }
+  };
+
+  const handleKey = (e) => {
+    e.code === "Enter" && handleSearch();
+  };
+
   return (
     <div className='bg-gray-900 text-white p-4 space-y-4 shadow-md'>
       <div className='flex items-center justify-between'>
@@ -11,7 +34,7 @@ const Header = () => {
         </div>
       </div>
       <div className='flex items-center space-x-2'>
-        <input type="text" placeholder='Search' className='w-full px-4 py-2 bg-gray-800 rounded-full outline-none border border-gray-800 focus:ring-1' />
+        <input type="text" placeholder='Search' className='w-full px-4 py-2 bg-gray-800 rounded-full outline-none border border-gray-800 focus:ring-1' onKeyDown={handleKey} onChange={(e) => { setUserName(e.target.value) }} />
         <p className='bg-blue-400 w-10 h-9 text-center rounded-full cursor-pointer pt-1'>+</p>
       </div>
     </div>
