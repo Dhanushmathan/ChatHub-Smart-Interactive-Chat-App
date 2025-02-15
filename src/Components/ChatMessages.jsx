@@ -26,7 +26,7 @@ const ChatMessages = ({ message }) => {
             <img
               src={currentUser.photoURL}
               alt="users"
-              className="w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400"
+              className="w-12 h-12 p-[1px] object-cover rounded-full border-2 cursor-pointer border-emerald-400"
             />
           </>
         ) : (
@@ -34,7 +34,7 @@ const ChatMessages = ({ message }) => {
             <img
               src={data.user.photoURL}
               alt="users"
-              className="w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400"
+              className="w-12 h-12 p-[1px] object-cover cursor-pointer rounded-full border-2 border-emerald-400"
             />
             <div className="p-2 mt-8 max-w-xs bg-white text-black shadow-lg rounded-e-full rounded-bl-full">
               <p>{message.text}</p>

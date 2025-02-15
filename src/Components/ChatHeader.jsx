@@ -6,7 +6,7 @@ const ChatHeader = ({ setIsChatOpen }) => {
 
     return (
         <div className='flex items-center justify-between bg-gradient-to-l from-[#6c63ff] via-[#3E58A9] to-[#3E58A9] px-4 py-3 text-white'>
-            <div className='flex items-center space-x-3'>
+            <div className='flex items-center space-x-3 cursor-pointer'>
                 <button className='cursor-pointer' onClick={() => setIsChatOpen(false)} title='BackMove'><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="currentColor" d="m5.83 9l5.58-5.58L10 2l-8 8l8 8l1.41-1.41L5.83 11H18V9z"></path></svg></button>
                 <img src={data.user?.photoURL} alt="users" className='w-12 h-12 p-[1px] object-cover rounded-full border-2 border-emerald-400' />
                 <div>

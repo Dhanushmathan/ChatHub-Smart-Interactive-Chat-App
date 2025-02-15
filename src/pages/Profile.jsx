@@ -63,6 +63,7 @@ const ProfileCard = () => {
       console.log("Error uploading image:", error);
     }
   };
+  console.log(currentUser.displayName);
 
   return (
     <div className="flex min-h-screen bg-light-blue p-6">
@@ -84,8 +85,8 @@ const ProfileCard = () => {
             </button>
           </label>
           <input id="file-input" type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
-          <h2 className="mt-4 text-lg font-semibold">Mathan</h2>
-          <p className="text-gray-500">Security Lead</p>
+          <h2 className="mt-4 text-lg font-semibold">{currentUser.displayName}</h2>
+          <p className="text-gray-500">Web Developer</p>
         </div>
         <nav className="mt-6">
           <ul className="space-y-4 text-gray-600">

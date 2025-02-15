@@ -3,6 +3,7 @@ import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updat
 import { db } from '../firebase/index';
 import { AuthContext } from '../context/AuthContext';
 import ChatUsers from './ChatUsers';
+import { formatTime } from '../utils/formateDate';
 
 const ChatList = ({ setIsChatOpen }) => {
   const { currentUser } = useContext(AuthContext);
@@ -98,9 +99,9 @@ const ChatList = ({ setIsChatOpen }) => {
               <img src={user.profilePic} alt="users image" className='w-16 h-16 lg:w-16 lg:h-16 md:w-14 md:h-14 p-[1px] object-cover rounded-full border-2 border-emerald-400' />
               <div>
                 <h3 className='xs:text-[20px] lg:text-[22px] md:text-[15px] font-semibold'>{user.displayName}</h3>
-                <p className={`lg:text-sm md:text-xs ${activeUser ? "text-white" : "text-gray-700"}`}>Heyy, Tsunade dateing...</p>
+                <p className={`lg:text-sm md:text-xs ${activeUser ? "text-white" : "text-gray-700"}`}>No messages yet</p>
               </div>
-              <span className={`ml-auto lg:text-xs md:text-[10px] ${activeUser ? "text-white" : "text-gray-600"}`}>08:00</span>
+              <span className={`ml-auto lg:text-xs md:text-[10px] ${activeUser ? "text-white" : "text-gray-600"}`}>{formatTime(message.date)}</span>
             </div>
           )
         }
