@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emoji-mart/react": "^1.1.1",
     "@tailwindcss/vite": "^4.0.3",
     "date-fns": "^4.1.0",
     "emoji-picker-react": "^4.12.0",
