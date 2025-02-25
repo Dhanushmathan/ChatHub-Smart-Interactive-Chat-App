@@ -11,7 +11,7 @@ const App = () => {
   const { currentUser, loading } = useContext(AuthContext);
 
   const ProtectedRoute = ({ children }) => {
-    if(loading) return <p>Loading...</p>;
+    if (loading) return <p>Loading...</p>;
     if (!currentUser) {
       return <Navigate to="/login" />
     }

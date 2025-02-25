@@ -3,11 +3,13 @@ import { auth, db } from "../firebase/index";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { AuthContext } from "../context/AuthContext";
 import { updateProfile } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const ProfileCard = () => {
   const [image, setImage] = useState("https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png");
   const userId = localStorage.getItem("userId");
   const { currentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -69,7 +71,8 @@ const ProfileCard = () => {
     <>
       <div className="flex flex-col min-h-screen bg-light-blue">
         <div className="flex-grow flex p-6">
-          <div className="md:w-1/4 bg-white xs:w-full p-6 rounded-2xl shadow-lg">
+          <div className="md:w-1/4 bg-white xs:w-full p-6 rounded-2xl shadow-lg relative">
+            <button onClick={() => navigate('/')} className='cursor-pointer absolute top-2 left-2 hover:bg-gray-300 p-2 rounded-full' title='BackMove'><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="currentColor" d="m5.83 9l5.58-5.58L10 2l-8 8l8 8l1.41-1.41L5.83 11H18V9z"></path></svg></button>
             <div className="flex flex-col items-center relative">
               <img
                 src={image}
