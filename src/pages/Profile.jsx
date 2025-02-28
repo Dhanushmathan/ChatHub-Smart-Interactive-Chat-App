@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { auth, db } from "../firebase/index";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { AuthContext } from "../context/AuthContext";
 import { updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -12,20 +12,19 @@ const ProfileCard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      if (!userId) return;
-      try {
-        const userRef = doc(db, "users", userId);
-        const userSnap = await getDoc(userRef);
-        if (userSnap.exists()) {
-          setImage(userSnap.data().profilePic || "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png");
+    if (!userId) return;
+    const userRef = doc(db, "users", userId);
+    
+    const unsub = onSnapshot(userRef, (docSnap) => {
+        if (docSnap.exists()) {
+            console.log("User data updated:", docSnap.data());
+            setImage(docSnap.data().profilePic || "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png");
         }
-      } catch (error) {
-        console.log("Error fetching user data:", error);
-      }
-    };
-    fetchUserData();
-  }, [userId]);
+    });
+
+    return () => unsub();
+}, [userId]);
+
 
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
@@ -48,24 +47,28 @@ const ProfileCard = () => {
       });
 
       const uploadImgURL = await res.json();
-      console.log("Cloudinary upload failed:", uploadImgURL);
+
+      if (!uploadImgURL.url) {
+        console.error("Cloudinary upload failed:", uploadImgURL);
+        return;
+      }
+
+      console.log("New Image URL:", uploadImgURL.url);
 
       await updateProfile(auth.currentUser, {
         photoURL: uploadImgURL.url,
-      })
-
-      console.log(uploadImgURL.url);
-      setImage(uploadImgURL.url);
+      });
 
       const userRef = doc(db, "users", currentUser.uid);
       await updateDoc(userRef, { profilePic: uploadImgURL.url });
 
-      console.log("Profile picture updated successfully!");
+      console.log("Firestore updated successfully!");
+
+      setImage(uploadImgURL.url);
     } catch (error) {
       console.log("Error uploading image:", error);
     }
-  };
-  console.log(currentUser.displayName);
+};
 
   return (
     <>
@@ -103,7 +106,7 @@ const ProfileCard = () => {
             </nav>
           </div>
           <div className="flex-1 ml-6 p-6 bg-white rounded-2xl shadow-lg hidden md:block">
-            <h3 className="text-gray-700 font-semibold">Nora spends most of their time on...</h3>
+            <h3 className="text-gray-700 font-semibold">{currentUser.displayName} spends most of their time on...</h3>
             <div className="mt-4 space-y-3">
               {["Product Infrastructure", "Network Security", "Security Testing", "Security Audit Outsourcing", "Bugs"].map(
                 (item, index) => (

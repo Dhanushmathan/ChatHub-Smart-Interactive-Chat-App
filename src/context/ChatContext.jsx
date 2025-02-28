@@ -1,15 +1,14 @@
-import { createContext, useContext, useReducer, } from "react";
+import { createContext, useContext, useReducer } from "react";
 import { AuthContext } from "./AuthContext";
 
 const ChatContext = createContext();
 
 const ChatContextProvider = ({ children }) => {
-
   const { currentUser } = useContext(AuthContext);
 
   const INITIAL_STATE = {
-    chatId: "null",
-    user: {},
+    chatId: null,
+    user: null,
   };
 
   const chatReducer = (state, action) => {
@@ -18,11 +17,10 @@ const ChatContextProvider = ({ children }) => {
         return {
           user: action.payload,
           chatId:
-            currentUser.uid > action.payload.uid
+            currentUser?.uid > action.payload.uid
               ? currentUser.uid + action.payload.uid
               : action.payload.uid + currentUser.uid,
         };
-
       default:
         return state;
     }
@@ -35,7 +33,6 @@ const ChatContextProvider = ({ children }) => {
       {children}
     </ChatContext.Provider>
   );
-
 };
 
 export { ChatContext, ChatContextProvider };

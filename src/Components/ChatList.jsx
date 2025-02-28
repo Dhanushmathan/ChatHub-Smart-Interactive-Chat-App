@@ -17,23 +17,35 @@ const ChatList = ({ setIsChatOpen }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSearch = async () => {
+    if (!userName.trim()) return;
+
     const data = query(collection(db, "users"), where("displayName", "==", userName));
+
     try {
       const querySnapshot = await getDocs(data);
+
+      if (querySnapshot.empty) {
+        setError(true);
+        return;
+      }
+
       querySnapshot.forEach((doc) => {
-        console.log(doc);
-        setUser(doc.data())
+        console.log(doc.data());
+        setUser(doc.data());
       });
+
     } catch (error) {
+      console.error("Error in search:", error);
       setError(true);
     }
   };
 
   const handleKey = (event) => {
     if (event.key.toLowerCase() === 'enter') {
-      handleSearch(event.target.value)
+      console.log("Enter key pressed!");
+      handleSearch();
     }
-  }
+  };
 
   const handleSelect = async () => {
     const combinedId = currentUser.uid > user.uid
@@ -41,7 +53,6 @@ const ChatList = ({ setIsChatOpen }) => {
       : user.uid + currentUser.uid;
 
     try {
-      // Check if chat exists
       const chatRef = doc(db, "chats", combinedId);
       const chatSnap = await getDoc(chatRef);
 
@@ -51,14 +62,12 @@ const ChatList = ({ setIsChatOpen }) => {
 
       const currentUserChatRef = doc(db, "userChats", currentUser.uid);
       const selectedUserChatRef = doc(db, "userChats", user.uid);
-      console.log(user);
-      console.log(currentUser);
 
       await updateDoc(currentUserChatRef, {
         [combinedId + ".userInfo"]: {
           uid: user.uid,
           displayName: user.displayName,
-          photoURL: user.photoURL || "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png",
+          photoURL: user?.photoURL ?? "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png",
         },
         [combinedId + ".date"]: serverTimestamp()
       });
@@ -67,7 +76,7 @@ const ChatList = ({ setIsChatOpen }) => {
         [combinedId + ".userInfo"]: {
           uid: currentUser.uid,
           displayName: currentUser.displayName,
-          photoURL: currentUser.photoURL || "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png",
+          photoURL: currentUser?.photoURL ?? "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png",
         },
         [combinedId + ".date"]: serverTimestamp()
       });
@@ -110,7 +119,7 @@ const ChatList = ({ setIsChatOpen }) => {
                 <h3 className='xs:text-[20px] lg:text-[22px] md:text-[15px] font-semibold'>{user.displayName}</h3>
                 <p className={`lg:text-sm md:text-xs ${activeUser ? "text-white" : "text-gray-700"}`}>No messages yet</p>
               </div>
-              <span className={`ml-auto lg:text-xs md:text-[10px] ${activeUser ? "text-white" : "text-gray-600"}`}>{formatTime(message.date)}</span>
+              <span className={`ml-auto lg:text-xs md:text-[10px] ${activeUser ? "text-white" : "text-gray-600"}`}>{formatTime(user.date)}</span>
             </div>
           )
         }

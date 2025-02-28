@@ -7,6 +7,9 @@ const ChatMessages = ({ message }) => {
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
 
+  console.log(currentUser);
+  console.log(data);
+
   const ref = useRef();
 
   useEffect(() => {
@@ -42,7 +45,6 @@ const ChatMessages = ({ message }) => {
             <span className="text-xs mt-8 text-gray-400 font-bold">{formatTime(message.date)}</span>
           </>
         )}
-
       </div>
     </div>
   )

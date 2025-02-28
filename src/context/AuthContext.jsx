@@ -1,6 +1,7 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 const AuthContext = createContext();
 
@@ -9,10 +10,26 @@ const AuthContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (user) => {
+    const unsub = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        setCurrentUser(user);
-        console.log(user);
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
+        if (userSnap.exists()) {
+          const userData = userSnap.data();
+          setCurrentUser({
+            uid: user.uid,
+            email: user.email,
+            displayName: userData.displayName || "Unknown User",
+            photoURL: userData.profilePic || "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png",
+          });
+        } else {
+          setCurrentUser({
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName || "Unknown User",
+            photoURL: user.profilePic || "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png",
+          })
+        }
         localStorage.setItem("userId", user.uid);
       } else {
         setCurrentUser(null);
@@ -23,6 +40,8 @@ const AuthContextProvider = ({ children }) => {
 
     return () => { unsub(); }
   }, [])
+
+  console.log(currentUser);
 
   return (
     <AuthContext.Provider value={{ currentUser, loading }}>
