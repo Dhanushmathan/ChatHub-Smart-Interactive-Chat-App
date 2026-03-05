@@ -40,7 +40,7 @@ const Home = () => {
                 <ChatHeader setIsChatOpen={setIsChatOpen} />
                 <div className="h-[calc(100vh-125px)] max-w-[390px] overflow-y-auto scrollbar">
                     {messages.map((m) => (
-                        <ChatMessages message={m} />
+                        <ChatMessages message={m} key={m.id} />
                     ))}
                 </div>
                 <Input />

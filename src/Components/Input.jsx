@@ -5,11 +5,14 @@ import { arrayUnion, doc, serverTimestamp, Timestamp, updateDoc } from 'firebase
 import { db } from '../firebase';
 import { v4 as uuid } from 'uuid';
 import EmojiPicker from 'emoji-picker-react';
+import { useRef } from 'react';
+import { te } from 'date-fns/locale';
 
 const Input = () => {
 
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
+  const textareaRef = useRef(null);
 
   const [text, setText] = useState("");
   const [showPicker, setShowPicker] = useState(false);
@@ -47,6 +50,16 @@ const Input = () => {
     });
 
     setText("");
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
   };
 
   return (
@@ -54,10 +67,13 @@ const Input = () => {
       <button className='cursor-pointer' title='emoji' onClick={() => setShowPicker(!showPicker)}><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24"><path fill="currentColor" fillRule="evenodd" d="M12 2.75a9.25 9.25 0 1 0 0 18.5a9.25 9.25 0 0 0 0-18.5M1.25 12C1.25 6.063 6.063 1.25 12 1.25S22.75 6.063 22.75 12S17.937 22.75 12 22.75S1.25 17.937 1.25 12m7.147 3.553a.75.75 0 0 1 1.05-.155c.728.54 1.607.852 2.553.852s1.825-.313 2.553-.852a.75.75 0 1 1 .894 1.204A5.77 5.77 0 0 1 12 17.75a5.77 5.77 0 0 1-3.447-1.148a.75.75 0 0 1-.156-1.049" clipRule="evenodd"></path><path fill="currentColor" d="M16 10.5c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5s.448-1.5 1-1.5s1 .672 1 1.5m-6 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S8.448 9 9 9s1 .672 1 1.5"></path></svg></button>
       {showPicker && (<div className='absolute bottom-12 left-0'><EmojiPicker onEmojiClick={addEmoji} /></div>)}
       <textarea
+        ref={textareaRef}
         rows="1"
         placeholder="Type a message"
-        className="w-[280px] px-4 py-1.5 rounded-md bg-[#bdcfff] resize-none outline-none max-h-32 overflow-y-auto"
-        onChange={(e) => setText(e.target.value)} value={text}
+        className="flex-1 px-4 py-1.5 rounded-md bg-[#bdcfff] resize-none outline-none max-h-32 overflow-y-auto"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        onKeyDown={handleKeyDown}
         onInput={(e) => {
           e.target.style.height = "auto";
           e.target.style.height = e.target.scrollHeight + "px";
