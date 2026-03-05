@@ -34,9 +34,9 @@ const ChatUsers = ({ activeUser, setIsChatOpen = () => { } }) => {
                     <div
                         key={key}
                         onClick={() => handleSelect(chat?.userInfo)}
-                        className={`flex items-center space-x-3 px-4 py-3 lg:px-4 lg:py-3 md:px-2 md:py-2 border-b border-gray-400 cursor-pointer transition-all duration-300 ${activeUser === chat.userInfo?.uid
-                                ? "bg-gradient-to-l from-[#6c66ff] via-[#3E58A9] to-[#3E58A9] text-white"
-                                : "bg-[#dfe5ff] text-black"
+                        className={`flex items-center space-x-3 px-2 py-3 lg:px-4 lg:py-3 md:px-2 md:py-2 border-b border-gray-400 cursor-pointer transition-all duration-300 ${activeUser === chat.userInfo?.uid
+                            ? "bg-gradient-to-l from-[#6c66ff] via-[#3E58A9] to-[#3E58A9] text-white"
+                            : "bg-[#dfe5ff] text-black"
                             }`}
                     >
                         <img
@@ -49,14 +49,16 @@ const ChatUsers = ({ activeUser, setIsChatOpen = () => { } }) => {
                                 {chat.userInfo?.displayName || "Unknown User"}
                             </h3>
                             <p
-                                className={`lg:text-sm md:text-xs ${activeUser === chat.userInfo?.uid ? "text-white" : "text-gray-700"
+                                className={`lg:text-sm md:text-xs ${activeUser === chat.userInfo?.uid ? "text-white" : "text-gray-600 font-medium"
                                     }`}
                             >
-                                {chat.lastMessage?.text || "No messages yet"}
+                                {chat.lastMessage?.text?.length > 30
+                                    ? chat.lastMessage.text.substring(0, 24) + "..."
+                                    : chat.lastMessage?.text || "No messages yet"}
                             </p>
                         </div>
                         <span
-                            className={`ml-auto lg:text-xs md:text-[10px] ${activeUser === chat.userInfo?.uid ? "text-white" : "text-gray-600"
+                            className={`ml-auto text-sm lg:text-xs md:text-[10px] ${activeUser === chat.userInfo?.uid ? "text-white" : "text-gray-600"
                                 }`}
                         >
                             {formatTime(chat.date)}

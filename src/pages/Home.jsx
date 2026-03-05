@@ -7,6 +7,7 @@ import Input from "../Components/Input";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 import { ChatContext } from "../context/ChatContext";
+import { formatDate } from "date-fns";
 
 const Home = () => {
     const [messages, setMessages] = useState([]);
@@ -26,6 +27,7 @@ const Home = () => {
         });
 
         return () => unSub();
+
     }, [data.chatId]);
 
     return (
@@ -36,9 +38,9 @@ const Home = () => {
             </div>
             <div className={`flex-1 bg-[#d3e7ff] flex flex-col ${isChatOpen ? "" : "hidden md:block"}`}>
                 <ChatHeader setIsChatOpen={setIsChatOpen} />
-                <div className="h-[calc(100vh-125px)] overflow-y-auto scrollbar">
+                <div className="h-[calc(100vh-125px)] max-w-[390px] overflow-y-auto scrollbar">
                     {messages.map((m) => (
-                        <ChatMessages message={m} key={m.id} />
+                        <ChatMessages message={m} />
                     ))}
                 </div>
                 <Input />

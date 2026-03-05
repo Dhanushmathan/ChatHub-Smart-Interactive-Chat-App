@@ -67,7 +67,7 @@ const ChatList = ({ setIsChatOpen }) => {
         [combinedId + ".userInfo"]: {
           uid: user.uid,
           displayName: user.displayName,
-          photoURL: user?.photoURL ?? "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png",
+          photoURL: user?.photoURL ?? "https://static.vecteezy.com/system/resources/thumbnails/037/468/797/small/user-icon-illustration-for-graphic-design-logo-web-site-social-media-mobile-app-ui-png.png",
         },
         [combinedId + ".date"]: serverTimestamp()
       });
@@ -76,7 +76,7 @@ const ChatList = ({ setIsChatOpen }) => {
         [combinedId + ".userInfo"]: {
           uid: currentUser.uid,
           displayName: currentUser.displayName,
-          photoURL: currentUser?.photoURL ?? "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png",
+          photoURL: currentUser?.photoURL ?? "https://static.vecteezy.com/system/resources/thumbnails/037/468/797/small/user-icon-illustration-for-graphic-design-logo-web-site-social-media-mobile-app-ui-png.png",
         },
         [combinedId + ".date"]: serverTimestamp()
       });
@@ -84,6 +84,7 @@ const ChatList = ({ setIsChatOpen }) => {
     } catch (error) {
       console.error("Error in handleSelect:", error);
     }
+    setActiveUser(true);
     setUser(null);
     setUserName("");
     setIsChatOpen(true);
@@ -112,16 +113,16 @@ const ChatList = ({ setIsChatOpen }) => {
       </div>
       <div className='flex-grow overflow-y-auto scrollbar'>
         {
-          user && (
-            <div onClick={handleSelect} className={`flex items-center space-x-3 px-4 py-3 lg:px-4 lg:py-3 md:px-2 md:py-2 border-b border-gray-400 cursor-pointer transition-all duration-300 ${activeUser ? "bg-gradient-to-l from-[#6c66ff] via-[#3E58A9] to-[#3E58A9] text-white" : "bg-[#dfe5ff] text-black"}`}>
-              <img src={user.profilePic} alt="users image" className='w-16 h-16 lg:w-16 lg:h-16 md:w-14 md:h-14 p-[1px] object-cover rounded-full border-2 border-emerald-400' />
-              <div>
-                <h3 className='xs:text-[20px] lg:text-[22px] md:text-[15px] font-semibold'>{user.displayName}</h3>
-                <p className={`lg:text-sm md:text-xs ${activeUser ? "text-white" : "text-gray-700"}`}>No messages yet</p>
-              </div>
-              <span className={`ml-auto lg:text-xs md:text-[10px] ${activeUser ? "text-white" : "text-gray-600"}`}>{formatTime(user.date)}</span>
-            </div>
-          )
+        user && (
+        <div onClick={handleSelect} className={`flex items-center space-x-3 px-4 py-3 lg:px-4 lg:py-3 md:px-2 md:py-2 border-b border-gray-400 cursor-pointer transition-all duration-300 ${activeUser ? "bg-gradient-to-l from-[#6c66ff] via-[#3E58A9] to-[#3E58A9] text-white" : "bg-[#dfe5ff] text-black"}`}>
+          <img src={user.photoURL} alt="users image" className='w-16 h-16 lg:w-16 lg:h-16 md:w-14 md:h-14 p-[1px] object-cover rounded-full border-2 border-emerald-400' />
+          <div>
+            <h3 className='xs:text-[20px] lg:text-[22px] md:text-[15px] font-semibold'>{user.displayName}</h3>
+            <p className={`lg:text-sm md:text-xs ${activeUser ? "text-white" : "text-gray-700"}`}>No messages yet</p>
+          </div>
+          <span className={`ml-auto lg:text-xs md:text-[10px] ${activeUser ? "text-white" : "text-gray-600"}`}>{formatTime(user.date)}</span>
+        </div>
+        )
         }
         <ChatUsers setIsChatOpen={setIsChatOpen} />
       </div>

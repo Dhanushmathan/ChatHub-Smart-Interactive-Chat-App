@@ -20,14 +20,14 @@ const AuthContextProvider = ({ children }) => {
             uid: user.uid,
             email: user.email,
             displayName: userData.displayName || "Unknown User",
-            photoURL: userData.profilePic || "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png",
+            photoURL: userData.profilePic || "https://static.vecteezy.com/system/resources/thumbnails/037/468/797/small/user-icon-illustration-for-graphic-design-logo-web-site-social-media-mobile-app-ui-png.png",
           });
         } else {
           setCurrentUser({
             uid: user.uid,
             email: user.email,
             displayName: user.displayName || "Unknown User",
-            photoURL: user.profilePic || "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png",
+            photoURL: user.profilePic || "https://static.vecteezy.com/system/resources/thumbnails/037/468/797/small/user-icon-illustration-for-graphic-design-logo-web-site-social-media-mobile-app-ui-png.png",
           })
         }
         localStorage.setItem("userId", user.uid);
