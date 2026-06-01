@@ -54,7 +54,7 @@ const ChatUsers = ({ activeUser, setIsChatOpen = () => { } }) => {
                             >
                                 {chat.lastMessage?.text?.length > 30
                                     ? chat.lastMessage.text.substring(0, 24) + "..."
-                                    : chat.lastMessage?.text || "No messages yet"}
+                                    : chat.lastMessage?.text || (chat.lastMessage?.image ? "Image" : "No messages yet")}
                             </p>
                         </div>
                         <span

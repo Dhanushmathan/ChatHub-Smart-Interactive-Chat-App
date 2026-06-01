@@ -20,9 +20,16 @@ const ChatMessages = ({ message }) => {
 
         {message.senderId === currentUser.uid ? (
           <>
-            {/* <span className="text-xs mt-8 text-gray-400 font-bold">{formatDate(message.date)}</span> */}
-            <div className="p-2 mt-5 max-w-[84%] break-words bg-gradient-to-l from-[#6c63ff] via-[#6c63ff] to-[#3E58A9] text-white shadow-lg rounded-tl-[0.4rem] rounded-bl-[0.4rem] rounded-br-[1rem]">
-              <p className="">{message.text}</p>
+            <div className="p-1 mt-5 max-w-[84%] break-words bg-gradient-to-l from-[#6c63ff] via-[#6c63ff] to-[#3E58A9] text-white shadow-lg rounded-tl-[0.4rem] rounded-bl-[0.4rem] rounded-br-[1rem]">
+              {message.image && (
+                <img
+                  src={message.image}
+                  alt="sent"
+                  className="mb-2 w-full max-w-[18rem] h-auto rounded-xl object-cover"
+                />
+              )}
+              {message.text && <p className="whitespace-pre-wrap">{message.text}</p>}
+              {!message.text && !message.image && <p className="text-sm opacity-80">(Empty message)</p>}
             </div>
             <img
               src={currentUser.photoURL}
@@ -37,10 +44,17 @@ const ChatMessages = ({ message }) => {
               alt="users"
               className="w-12 h-12 p-[1px] object-cover cursor-pointer rounded-full border-2 border-emerald-400"
             />
-            <div className="p-2 mt-5 max-w-[84%] break-words bg-white text-black shadow-lg rounded-bl-[1rem] rounded-br-[0.4rem] rounded-tr-[0.4rem]">
-              <p className="">{message.text}</p>
+            <div className="p-1 mt-5 max-w-[84%] break-words bg-white text-black shadow-lg rounded-bl-[1rem] rounded-br-[0.4rem] rounded-tr-[0.4rem]">
+              {message.image && (
+                <img
+                  src={message.image}
+                  alt="received"
+                  className="mb-2 w-full max-w-[18rem] h-auto rounded-xl object-cover"
+                />
+              )}
+              {message.text && <p className="whitespace-pre-wrap">{message.text}</p>}
+              {!message.text && !message.image && <p className="text-sm opacity-80">(Empty message)</p>}
             </div>
-            {/* <span className="text-xs mt-8 text-gray-400 font-bold">{formatDate(message.date)}</span> */}
           </>
         )}
       </div>

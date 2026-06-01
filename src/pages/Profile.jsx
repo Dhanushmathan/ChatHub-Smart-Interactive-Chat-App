@@ -119,7 +119,7 @@ const ProfileCard = () => {
           </div>
         </div>
         <footer className="bg-[#635BFF] text-white text-center p-4 mt-6 rounded-2xl shadow-lg">
-          <p><a href="https://github.com/dhanushmathan" className="hover:underline hover:text-blue-600">Dhanush mathan </a>&copy;{new Date().getFullYear()} ChatHub. All rights reserved.</p>
+          <p><a>Dhanush mathan </a>&copy;{new Date().getFullYear()} ChatHub. All rights reserved.</p>
         </footer>
       </div>
     </>
